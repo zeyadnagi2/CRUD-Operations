@@ -91,8 +91,9 @@ function productUpdate() {
   products[boxElement].category = productCategory.value;
   products[boxElement].desc = productDescription.value;
 
-
- 
+  if (productImage.files[0]) {
+    products[boxElement].imgName = productImage.files[0].name;
+  }
 
   btnAdd.classList.remove("d-none");
   btnUpdate.classList.add("d-none");
@@ -102,6 +103,7 @@ function productUpdate() {
   displayProduct();
   cleanInputs();
 }
+
 
 // delete
 function deleteProduct(elementIndex) {
