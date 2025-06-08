@@ -5,6 +5,7 @@ var productDescription = document.getElementById("productDescription");
 var productImage = document.getElementById("productImage");
 var btnAdd = document.getElementById("btnAdd");
 var btnUpdate = document.getElementById("btnUpdate");
+var searchInput = document.getElementById("searchInput");
 var boxElement;
 var row = document.getElementById("row");
 var products = [];
@@ -12,7 +13,7 @@ var products = [];
 // local strorage get
 if (localStorage.getItem("products")) {
   products = JSON.parse(localStorage.getItem("products"));
-  displayProduct();
+  displayProduct(products);
 }
 
 // add
@@ -27,9 +28,8 @@ function addProduct() {
 
   products.unshift(product);
   localStorage.setItem("products", JSON.stringify(products));
-  console.log(products);
   cleanInputs();
-  displayProduct();
+  displayProduct(products);
 }
 
 // clear inputs
@@ -42,20 +42,20 @@ function cleanInputs() {
 }
 
 // display
-function displayProduct() {
+function displayProduct(displayedArr) {
   var cartona = ``;
 
-  for (var i = 0; i < products.length; i++) {
+  for (var i = 0; i < displayedArr.length; i++) {
     cartona += `<div class="col-12 col-sm-12 col-md-4 col-lg-4 p-3">
             <div class="product bg-light p-3 rounded">
-              <div class="product-image d-flex justify-content-center align-content-center">
-                <img class="w-50 d-flex" src="./images/Products/${products[i].imgName}" alt="" />
+              <div class="product-image">
+                <img class="" src="./images/Products/${displayedArr[i].imgName}" alt="" />
               </div>
               <div class="product-body">
-                <h2 class="h3">Name: <span>${products[i].pName}</span></h2>
-                <h2 class="h3">Price: <span>${products[i].price}</span></h2>
-                <h3 class="h4">Category: <span>${products[i].category}</span></h3>
-                <p class="lead"><span>Description:</span>${products[i].desc}</p>
+                <h2 class="h3">Name: <span>${displayedArr[i].pName}</span></h2>
+                <h2 class="h3">Price: <span>${displayedArr[i].price}</span></h2>
+                <h3 class="h4">Category: <span>${displayedArr[i].category}</span></h3>
+                <p class="lead"><span>Description:</span>${displayedArr[i].desc}</p>
                 <div class="product-btns">
                   <button onclick="getFormToUpdate(${i})" class="btn btn-outline-warning my-2">
                     Update Product 🪶
@@ -69,7 +69,6 @@ function displayProduct() {
           </div>`;
   }
 
-  console.log(cartona);
   row.innerHTML = cartona;
 }
 
@@ -100,14 +99,28 @@ function productUpdate() {
 
   localStorage.setItem("products", JSON.stringify(products));
 
-  displayProduct();
+  displayProduct(products);
   cleanInputs();
 }
-
 
 // delete
 function deleteProduct(elementIndex) {
   products.splice(elementIndex, 1);
   localStorage.setItem("products", JSON.stringify(products));
-  displayProduct();
+  displayProduct(products);
+}
+
+// search
+function searchProduct(searchKey) {
+  var result = [];
+
+  for (var i = 0; i < products.length; i++) {
+    if (
+      products[i].pName.toLowerCase().includes(searchKey.toLowerCase().trim())
+    ) {
+      result.push(products[i]);
+    }
+  }
+
+  displayProduct(result);
 }

@@ -20,3 +20,13 @@ input:focus , textarea:focus{
     -ms-border-radius: 2rem;
     -o-border-radius: 2rem;
 }
+
+.product-image{
+    text-align: center;
+}
+
+.product-image img{
+    height: 250px;
+    width: 250px;
+    object-fit: contain;
+}
