@@ -22,7 +22,8 @@ function addProduct() {
     validateInputs(productName) &
     validateInputs(productPrice) &
     validateInputs(productCategory) &
-    validateInputs(productDescription)
+    validateInputs(productDescription) &
+    validateInputs(productImage)
   ) {
     var product = {
       pName: productName.value,
@@ -174,6 +175,7 @@ function validateInputs(element) {
     productPrice: /^[1-9]([0-9]{2,4})$/,
     productCategory: /^(tv|mobile|screens|electronic)$/i,
     productDescription: /^.{1,100}$/,
+    productImage: /.{1,10}\.(jpg|png|webg|svg)/
   };
 
   if (inputsRegx[element.id].test(element.value)) {
