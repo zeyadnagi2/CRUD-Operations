@@ -175,7 +175,7 @@ function validateInputs(element) {
     productPrice: /^[1-9]([0-9]{2,4})$/,
     productCategory: /^(tv|mobile|screens|electronic)$/i,
     productDescription: /^.{1,100}$/,
-    productImage: /.{1,10}\.(jpg|png|webg|svg)/
+    productImage: /.{1,10}\.(jpg|png|webg|svg)/,
   };
 
   if (inputsRegx[element.id].test(element.value)) {
