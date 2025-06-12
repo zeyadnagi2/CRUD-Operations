@@ -125,37 +125,55 @@ function searchProduct(searchKey) {
   displayProduct(result);
 }
 
-// validate product name
-function validateInputProductName(element) {
-  var productNameRegx = /^[A-Z]([a-z]{2,8})(\s)(.{2,8})$/;
+// // validate product name
+// function validateInputProductName(element) {
+//   var productNameRegx = /^[A-Z]([a-z]{2,8})(\s)(.{2,8})$/;
 
-  if (productNameRegx.test(element)) {
-    productName.classList.replace("is-invalid", "is-valid");
+//   if (productNameRegx.test(element)) {
+//     productName.classList.replace("is-invalid", "is-valid");
+//   } else {
+//     productName.classList.add("is-invalid");
+//   }
+// }
+
+// // validate product price
+// function validateInputProductPrice(element) {
+//   var productPriceRegx = /^[1-9]([0-9]{2,4})$/;
+
+//   if (productPriceRegx.test(element)) {
+//     productPrice.classList.replace("is-invalid", "is-valid");
+//   } else {
+//     productPrice.classList.add("is-invalid");
+//   }
+// }
+
+// // validate product category
+// function validateInputProductCategory(element) {
+//   var productCategoryRegx = /^(tv|mobile|screens|electronic)$/i;
+
+//   if (productCategoryRegx.test(element)) {
+//     productCategory.classList.add("is-valid");
+//     productCategory.classList.remove("is-invalid");
+//   } else {
+//     productCategory.classList.remove("is-valid");
+//     productCategory.classList.add("is-invalid");
+//   }
+// }
+
+// validate all inputs
+function validateInputs(element) {
+  var inputsRegx = {
+    productName: /^[A-Z]([a-z]{2,8})(\s)(.{2,8})$/,
+    productPrice: /^[1-9]([0-9]{2,4})$/,
+    productCategory: /^(tv|mobile|screens|electronic)$/i,
+    productDescription: /^.{1,100}$/,
+  };
+
+  if (inputsRegx[element.id].test(element.value)) {
+    element.classList.add("is-valid");
+    element.classList.remove("is-invalid");
   } else {
-    productName.classList.add("is-invalid");
-  }
-}
-
-// validate product price
-function validateInputProductPrice(element) {
-  var productPriceRegx = /^[1-9]([0-9]{2,4})$/;
-
-  if (productPriceRegx.test(element)) {
-    productPrice.classList.replace("is-invalid", "is-valid");
-  } else {
-    productPrice.classList.add("is-invalid");
-  }
-}
-
-// validate product category
-function validateInputProductCategory(element) {
-  var productCategoryRegx = /^(tv|mobile|screens|electronic)$/i;
-
-  if (productCategoryRegx.test(element)) {
-    productCategory.classList.add("is-valid");
-    productCategory.classList.remove("is-invalid");
-  } else {
-    productCategory.classList.remove("is-valid");
-    productCategory.classList.add("is-invalid");
+    element.classList.remove("is-valid");
+    element.classList.add("is-invalid");
   }
 }
