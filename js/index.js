@@ -18,18 +18,25 @@ if (localStorage.getItem("products")) {
 
 // add
 function addProduct() {
-  var product = {
-    pName: productName.value,
-    price: productPrice.value,
-    category: productCategory.value,
-    desc: productDescription.value,
-    imgName: productImage.files[0]?.name,
-  };
+  if (
+    validateInputs(productName) &
+    validateInputs(productPrice) &
+    validateInputs(productCategory) &
+    validateInputs(productDescription)
+  ) {
+    var product = {
+      pName: productName.value,
+      price: productPrice.value,
+      category: productCategory.value,
+      desc: productDescription.value,
+      imgName: productImage.files[0]?.name,
+    };
 
-  products.unshift(product);
-  localStorage.setItem("products", JSON.stringify(products));
-  cleanInputs();
-  displayProduct(products);
+    products.unshift(product);
+    localStorage.setItem("products", JSON.stringify(products));
+    cleanInputs();
+    displayProduct(products);
+  }
 }
 
 // clear inputs
@@ -172,8 +179,12 @@ function validateInputs(element) {
   if (inputsRegx[element.id].test(element.value)) {
     element.classList.add("is-valid");
     element.classList.remove("is-invalid");
+    element.nextElementSibling.classList.add("d-none");
+    return true;
   } else {
     element.classList.remove("is-valid");
     element.classList.add("is-invalid");
+    element.nextElementSibling.classList.remove("d-none");
+    return false;
   }
 }
