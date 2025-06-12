@@ -5,7 +5,7 @@ body{
 .crud-form{
     box-shadow: 0em 0em 1em 0.2em lavender;
 }
-input , textarea{
+/* input , textarea{
     border: none !important;
 }
 
@@ -19,7 +19,7 @@ input:focus , textarea:focus{
     -moz-border-radius: 2rem;
     -ms-border-radius: 2rem;
     -o-border-radius: 2rem;
-}
+} */
 
 .product-image{
     text-align: center;

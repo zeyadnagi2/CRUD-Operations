@@ -27,6 +27,7 @@
 
         <div class="form-floating my-1">
           <input
+            oninput="validateInputProductName(this.value)"
             type="text"
             class="form-control"
             id="productName"
@@ -37,6 +38,7 @@
 
         <div class="form-floating my-1">
           <input
+            oninput="validateInputProductPrice(this.value)"
             type="number"
             class="form-control"
             id="productPrice"
@@ -47,6 +49,7 @@
 
         <div class="form-floating my-1">
           <input
+            onchange="validateInputProductCategory(this.value)"
             list="category"
             type="text"
             class="form-control"

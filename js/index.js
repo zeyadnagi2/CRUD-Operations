@@ -124,3 +124,38 @@ function searchProduct(searchKey) {
 
   displayProduct(result);
 }
+
+// validate product name
+function validateInputProductName(element) {
+  var productNameRegx = /^[A-Z]([a-z]{2,8})(\s)(.{2,8})$/;
+
+  if (productNameRegx.test(element)) {
+    productName.classList.replace("is-invalid", "is-valid");
+  } else {
+    productName.classList.add("is-invalid");
+  }
+}
+
+// validate product price
+function validateInputProductPrice(element) {
+  var productPriceRegx = /^[1-9]([0-9]{2,4})$/;
+
+  if (productPriceRegx.test(element)) {
+    productPrice.classList.replace("is-invalid", "is-valid");
+  } else {
+    productPrice.classList.add("is-invalid");
+  }
+}
+
+// validate product category
+function validateInputProductCategory(element) {
+  var productCategoryRegx = /^(tv|mobile|screens|electronic)$/i;
+
+  if (productCategoryRegx.test(element)) {
+    productCategory.classList.add("is-valid");
+    productCategory.classList.remove("is-invalid");
+  } else {
+    productCategory.classList.remove("is-valid");
+    productCategory.classList.add("is-invalid");
+  }
+}
